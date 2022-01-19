@@ -1,0 +1,175 @@
+{% extends 'base.html' %}
+{% load static pages_tags %}
+
+{% block header %}
+<section class="siteHeader">
+    <nav class="navMenu">
+        <ul>
+            <li><a href="{% url 'homepage' %}" data-element="#services" data-text="Главная">Главная</a></li>
+            <li><span class="scroll_link" data-element="#services" data-text="Услуги">Услуги</span></li>
+            <li><a href="{% url 'catalog' %}" data-text="Каталог">Каталог</a></li>
+            <li><a href="{% url 'reviews' %}" data-text="Отзывы">Отзывы</a></li>
+            <li><a href="{% url 'delivery' %}" data-text="Доставка">Доставка</a></li>
+            <li><a href="{% url 'connect' %}" data-text="Как подключить">Как подключить</a></li>
+            <li><a href="{% url 'galery' %}" data-text="Галерея">Галерея</a></li>
+        </ul>
+    </nav>
+</section>
+{% endblock header %}
+
+{% block content %}
+<section class="banner">
+    <img src="{% static 'img/banner2.jpg' %}" alt="">
+    <div class="gradientblock"></div>
+    <section class="siteTitle">
+        <h1>
+            <span>З</span><span>амена</span> 
+            <span>а</span><span>ккумуляторной</span><br>
+            <span>б</span><span>атареи</span>  <span>AirPods</span>
+        </h1>
+    </section>
+</section>
+<section class="my-section" id="services">
+    <div class="container-wide">
+        <div class="row">
+            <div class="col-md-12">
+                <h2 class="text-center"><span>Услуги</span></h2>
+            </div>
+        </div>
+        <div class="services-wrap">
+            {% get_services as services %}
+            {% for service in services %}
+                {% if service.link %}
+                    <a href="{{service.link}}" class="service">
+                        <div class="icon">{{ service.icon|safe }}</div>
+                        <h4 class="title">{{ service.title }}</h4>
+                        <div class="price">Цена: <span>{{ service.price }}</span> грн</div>
+                        <div class="time">Время выполнения: {{ service.time }} мин</div>
+                    </a>
+                {% else %}
+                <div class="service">
+                    <div class="icon">{{ service.icon|safe }}</div>
+                    <h4 class="title">{{ service.title }}</h4>
+                    <div class="price">Цена: <span>{{ service.price }}</span> грн</div>
+                    <div class="time">Время выполнения: {{ service.time }} мин</div>
+                </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <h4 class="text-center">
+                    <span>
+                        Гарантия на аккумуляторную батарею и ремонт
+                    </span>
+                    <span>
+                        3 месяца
+                    </span>
+                </h4>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="my-section" id="you_to_us">
+    <div class="container-wide">
+        <div class="row">
+            <div class="col-12">
+                <h3 class="my-title"><span>Вам к нам если AirPods:</span></h3>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-1"></div>
+            <div class="col-md-6">
+                <ol>
+                    {% get_you_to_us as you_to_us_list %}
+                    {% for you_to_us in you_to_us_list %}
+                        <li>{{ you_to_us.text }}</li>
+                    {% endfor %}
+                </ol>
+            </div>
+            <div class="col-md-4" data-aos="fade-up-left">
+                <img src="{% static 'img/airpods1.jpg' %}" alt="airpods">
+            </div>
+        </div>
+    </div>
+</section>
+<section class="my-section" id="you_get">
+    <div class="container-wide">
+        <div class="row">
+            <div class="col-md-12">
+                <h3 class="my-title"><span>Что вы получите?</span></h3>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3" data-aos="fade-up-right">
+                <img src="{% static 'img/airpods4.png' %}" alt="airpods">
+            </div>
+            <div class="col-md-7 offset-md-2">
+                <ol>
+                    {% get_you_get as you_get_list %}
+                    {% for you_get in you_get_list %}
+                        <li>{{ you_get.text }}</li>
+                    {% endfor %}
+                </ol>
+            </div>
+        </div>
+        <div class="col-md-12">
+            <button type="button" class="btn my-btn btn-primary js-show-cart"
+                    data-url="{% url "add_to_cart" %}"
+                    data-battery="True">
+                ЗАКАЗАТЬ
+            </button>
+        </div>
+    </div>
+</section>
+
+<section class="my-section" id="good_to_know">
+    <div class="container-wide">
+        <div class="row">
+            <div class="col-md-12">
+                <h3 class="my-title"><span>Полезно знать</span></h3>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-7">
+                <ol>
+                    {% get_good_to_know as good_to_know_list %}
+                    {% for good_to_know in good_to_know_list %}
+                        <li>{{ good_to_know.text }}</li>
+                    {% endfor %}
+                </ol>
+            </div>
+
+            <div class="col-md-5" data-aos="zoom-in-up">
+                <img src="{% static 'img/image0.png' %}" alt="airpods" style="width: 520px">
+            </div>
+        </div>
+    </div>
+</section>
+<section class="my-section" id="delivery">
+    <div class="container-wide">
+        <div class="row">
+            <div class="col-md-12">
+                <h3 class="my-title"><span>
+                    Вы не из Винницы ?
+                </span></h3>
+            </div>
+            <div class="col-md-4" data-aos="zoom-in-right">
+                <img src="{% static 'img/novaposhta.svg' %}" alt="nova-poshta" class="img-nova-poshta">
+            </div>
+            <div class="col-md-4">
+                <p>
+                    Отправьте Новой Почтой
+                </p>
+            </div>
+            <div class="col-md-4">
+            </div>
+
+            <div class="col-md-12">
+                <a href="{% url 'delivery' %}" type="button" class="btn btn-primary my-btn">Узнать как</a>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock content %}

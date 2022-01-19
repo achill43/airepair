@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% load pages_tags %}
+
+{% block content %}
+<div class="catalog">
+    <div class="container-wide">
+        <div class="row">
+            <h1 class="my-title gallery-title">
+                <span>Галерея</span>
+            </h1>
+        </div>
+        <div class="row">
+            <section class="gallery-flex"> 
+            {% for galery in galeries %}
+                <div class="gallery-img js-gallery-img">
+                    {% if galery.is_gif %}
+                        <img src="{{ galery.image.url }}" alt="{{ galery.alt_text }}">
+                    {% else %}
+                        <img src="{{ galery.image.url }}" alt="{{ galery.alt_text }}">
+                    {% endif %}
+                    <div class="pulse">
+                        <i class="fas fa-fingerprint"></i>
+                    </div>
+                    <div class="info">
+                        <h3>{{ galery.alt_text }}</h3>
+                    </div>
+                </div>
+            {% endfor %}
+            </section>
+        </div>
+    </div>
+</div>
+{% endblock content %}

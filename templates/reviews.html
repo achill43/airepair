@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% load pages_tags %}
+
+{% block content %}
+<div class="catalog">
+    <div class="container-wide">
+        <div class="row">
+            <h1 class="my-title gallery-title">
+                <span>Отзывы</span>
+            </h1>
+        </div>
+        <div class="row">
+            <div class="reviews-slider js-reviews-slider">
+
+                {% for review in reviews %}
+                    <div class="slide">
+                        <img src="{{ review.image.url }}" alt="review_{{ review.id }}">
+                    </div>
+                {% endfor %}
+            </div>
+            <section class="gallery-flex"> 
+            </section>
+        </div>
+    </div>
+</div>
+{% endblock content %}

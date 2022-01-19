@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% load pages_tags %}
+
+{% block content %}
+<div class="catalog">
+    <div class="container-wide">
+        <br>
+        <br>
+        <div class="row">
+            {% for product in products %}
+                <div class="col-md-3 col-6 product-wrap">
+                    <div class="product-item">
+
+                        <a href="{{ product.get_absolute_url }}" class="img-wrap">
+                            <img src="{{ product.get_first_img.url }}" alt="{{product.title}}">
+                        </a>
+
+                        <div class="text">
+                            <h3>
+                                <a href="{{ product.get_absolute_url }}">
+                                    {{ product.title }}
+                                </a>
+                            </h3>
+                            <h5>{{ product.sub_title }}</h5>
+                            <p>{{ product.model }}</p>
+                            <h3>{{ product.price }} грн</h3>
+                        </div>
+                        <button type="button" class="btn my-btn btn-primary js-add-to-cart"
+                                data-url="{% url "add_to_cart" %}"
+                                data-id="{{ product.id }}">Купить</button>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock content %}

@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+{% load static pages_tags %}
+
+{% block content %}
+    <div class="container-wide container-small">
+        <div class="sc-cKRKFl kSUooD">
+            <div class="sc-iIgjPs krBuaG">
+                <div class="sc-gstuGz tcgHY">
+                    <h1 class="sc-jcsPjo bUEpDn my-title">
+                        <span>Чистка AirPods</span>
+                    </h1>
+                    <h3 class="sc-fkmfBh jJpdDo my-title">
+                        Зачем необходимо чистить AirPods?
+                    </h3>
+                </div>
+            </div>
+            <div class="sc-QxirK fWxumN">
+                <div class="row">
+                    <div class="col-md-12">
+                        <p class="p-first-tab">
+                            В ходе ежедневного использования, AirPods как и другая техника, загрязняются. Пыль, мелкий 
+                            мусор, вода, появления пятен образуются как на самом корпусе, так и на сетках динамика. 
+                        </p>
+                        <p class="p-first-tab">
+                            Что бы 
+                            не допустить сбоев в работе из-за попадания грязи необходимо время от времени чистить наушники, 
+                            ведь это не только гигиенично, но и благодаря регулярному техническому обслуживанию ваши AirPods 
+                            будут выглядеть как новые и прослужат гораздо дольше.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <section class="my-section" id="delivery">
+        <div class="container-wide container-small">
+            <div class="row">
+                <div class="col-md-6 clean-slider-wrap">
+                    <div class="clean-slider js-clean-slider">
+                        {% get_cleaning_slider as slides %}
+                        {% for slide in slides %}
+                        <div class="slide">
+                            <img src="{{ slide.img.url }}">
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card">
+                        <p class="text-center">Единоразовая чистка наушников</p>
+                        <h2 class="text-center">150 грн</h2>
+                        <h5 class="text-center">
+                            Гарантия качества 2 месяца
+                        </h5>
+
+                        <button type="button" class="btn btn-primary my-btn btn-succes js-show-cart"
+                                data-url="{% url "add_to_cart" %}"
+                                data-cleaning="True">
+                            ЗАКАЗАТЬ
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock content %}

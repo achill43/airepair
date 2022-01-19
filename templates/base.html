@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+{% load static cart_tags %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Airpods</title>
+    <meta name="description" content="Сервисный центр по ремонту наушников AirPods. Онлайн магазин наушников и аксессуаров. \n Очумелые ручки">
+    <meta name="keywords" content="airpods, repair, refurbished, cleaning">
+    <meta name="author" content="Bogdan klymchuk">
+    <link rel="stylesheet" href="{% static 'bootstrap-5.0.2-dist/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'fontawesome-free-5.15.4-web/css/all.css' %}">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.css"/>
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick-theme.min.css"/>
+    <link rel="stylesheet" href="{% static 'css/style.min.css'%}" type="text/css">
+</head>
+<body>
+    <script src="https://kit.fontawesome.com/6c931a9bea.js" crossorigin="anonymous"></script>
+    <div class="modal js-modal">
+        <div class="bg-block"></div>
+        <div class="content">
+            <button class="myHanburger myHamburgerLine close js-close-modal">
+                <span></span>
+            </button>
+            <div class="modal-context js-modal-content">
+            </div>
+        </div>
+    </div>
+    {% mini_cart %}
+    <button class="myHanburger myHamburgerLine" id="menuBtn" onclick="menuToggle()">
+        <span>Menu </span>
+    </button>
+    <header id="myHeader">
+        {% block header %}
+            <section class="siteHeader">
+                <nav class="navMenu">
+                    <ul>
+                        <li><a href="{% url 'homepage' %}" data-element="#services" data-text="Главная">Главная</a></li>
+                        <li><a href="{% url 'catalog' %}" data-text="Каталог">Каталог</a></li>
+                        <li><a href="{% url 'reviews' %}" data-text="Отзывы">Отзывы</a></li>
+                        <li><a href="{% url 'delivery' %}" data-text="Доставка">Доставка</a></li>
+                        <li><a href="{% url 'connect' %}" data-text="Подключение наушников">Подключение наушников</a></li>
+                        <li><a href="{% url 'galery' %}" data-text="Галерея">Галерея</a></li>
+                    </ul>
+                </nav>
+            </section>
+        {% endblock header %}
+    </header>
+    {% block content %}{% endblock content %}
+    <footer class="footer">
+        <div class="container-wide">
+            <h5>
+                <span>Богдан +38(067)-352-58-19</span>
+                <span class="link-wraper">
+                    <a href="viber://chat?number=%2B380673525819" target="_blank"><i class="fab fa-viber"></i></a>
+                    <a href="tg://resolve?domain=klymchukb" target="_blank">
+                        <i class="fab fa-telegram"></i>
+                    </a>
+                </span>
+            </h5>
+            
+        </div>
+    </footer>
+    <script src="{% static 'js/jquery.min.js' %}"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="{% static 'js/main.js' %}"></script>
+</body>
+</html>

@@ -1,0 +1,48 @@
+{% load static %}
+
+<h3 class="my-title"><span>Корзина</span></h3>
+<div class="cart-wrapper">
+    {% for item in cart_obj.item.all %}
+    <div class="row cart-item">
+        <div class="col-3 img-block">
+            <img src="{{ item.product.get_first_img.url }}" alt="{{ item.product.title }}">
+        </div>
+        <div class="col-md-7 col-6 text-block">
+            <h5>{{ item.product.title }}</h5>
+            <p>Количество: {{ item.quantity }}</p>
+            <h5>Цена: {{ item.total_price }}</h5>
+
+        </div>
+        <div class="col-2 action-block">
+            <button class="btn delete-from-cart js-delete-from-cart"
+                data-url="{% url 'delete_from_cart' %}"
+                data-id="{{ item.id }}">
+                <i class="fas fa-trash"></i>
+            </button>
+        </div>
+    </div>
+    {% empty %}
+        {% if not is_cleaning and not is_change_battery %}
+            <p>Корзина пуста необходимо добавть товар</p>
+        {% endif %}
+    {% endfor %}
+    {% if is_cleaning %}
+        <p class="mobile-text-center">Заказ на чистку наушников и кейса</p>
+    {% elif is_change_battery %}
+        <p>Заказ на замену аккумуляторной батареи</p>
+    {% endif %}
+</div>
+
+<h3 class="my-title"><span>Оформить заказ</span></h3>
+<form action="{% url 'order_form' %}" class="js-order-form">
+    {% csrf_token %}
+    <div class="form-group">
+        {{ order_form.is_cleaning }}
+        {{ order_form.is_change_battery }}
+        {{ order_form.full_name }}
+    </div>
+    <div class="form-group">
+        {{ order_form.phone }}
+    </div>
+    <button class="btn btn-primary my-btn">Оформить</button>
+</form>

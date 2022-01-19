@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% load pages_tags %}
+
+{% block content %}
+<div class="catalog">
+
+    <div class="container-wide">
+        <br>
+        <br>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="product-slider js-product-slider">
+                    {% for product_image in product.images.all %}
+                    <div class="slide">
+                        <img src="{{ product_image.img.url }}" alt="{{ product.title }}">
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="col-md-6">
+                <h1 class="my-title"><span>{{ product.title }}</span></h1>
+                <h3>Цена: {{ product.price }} грн</h3>
+                <h5>{{ product.sub_title }}</h5>
+                <p>Модель: </p>
+                <p>
+                    {{ product.model }}
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}

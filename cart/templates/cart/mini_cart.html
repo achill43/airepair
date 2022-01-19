@@ -1,0 +1,5 @@
+{% load static %}
+<div class="basket js-show-cart" data-url="{% url "add_to_cart" %}">
+    <img src="{% static 'img/cart_icon.png' %}" alt="">
+    <div class="quantity js-cart-quantity">{{ quantity }}</div>
+</div>
